@@ -31,7 +31,6 @@ public class FeignErrorConfiguration
 	{
 		return new ErrorDecoder()
 		{
-
 			@Override
 			public Exception decode(String methodKey, Response response)
 			{
@@ -39,8 +38,6 @@ public class FeignErrorConfiguration
 				{
 					ObjectMapper objectMapper=new ObjectMapper();
 					HashMap map = objectMapper.readValue(response.body().asInputStream(), HashMap.class);
-					Exception exception=null;
-					System.out.println(map);
 				} catch (IOException e)
 				{
 					e.printStackTrace();
