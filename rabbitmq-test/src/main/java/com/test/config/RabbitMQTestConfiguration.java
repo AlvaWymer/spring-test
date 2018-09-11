@@ -97,7 +97,7 @@ public class RabbitMQTestConfiguration
 		SimpleMessageListenerContainer container=new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory());
 		container.setQueues(testQueue());
-//		container.setMessageListener(consumer());
+		container.setMessageListener(consumer());
 		container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
 //		MessageListenerAdapter adapter=new MessageListenerAdapter();
 //		adapter.setDelegate(consumer());

@@ -65,8 +65,14 @@ public class RabbitmqTestApplicationTests
 		data.setId(UUID.randomUUID().toString());
 		HashMap<String, Object>map=new HashMap<>();
 		map.put("user", "joker");
-		
 		publisher.publishePojoWithCorrelationData("test", map, data);
-		
+	}
+	@Test
+	public void testNormalSendAndReceive()
+	{
+		HashMap<String, Object>map=new HashMap<>();
+		map.put("user", "joker");
+		Object object = publisher.publishAndReceive("test", map);
+		System.out.println(object);
 	}
 }

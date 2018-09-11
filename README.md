@@ -3,3 +3,6 @@ test-zuul-bug:
 
 rabbitmq-test:
 	用于回顾下rabbitmq,有发送消息确认,是失败的callback
+
+test-spring-aop
+	是用于测试在aop切面中添加事务

@@ -43,4 +43,9 @@ public class MyRabbitMQPubisher
 	{
 		rabbitTemplate.convertAndSend("test","test",obj,data);
 	}
+	
+	public Object publishAndReceive(String routingKey,Object ob)
+	{
+		return rabbitTemplate.convertSendAndReceive(routingKey, ob);
+	}
 }

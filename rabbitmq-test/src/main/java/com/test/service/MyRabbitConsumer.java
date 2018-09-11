@@ -30,7 +30,7 @@ public class MyRabbitConsumer implements ChannelAwareMessageListener
 		
 //		channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 		//失败,并且放回队列
-		channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);
+//		channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);ost:
 		//拒绝,并且将其重新放回队列中
 //		channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
 	}
