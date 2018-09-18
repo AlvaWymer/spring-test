@@ -6,3 +6,5 @@ rabbitmq-test:
 
 test-spring-aop
 	是用于测试在aop切面中添加事务
+spring-test-rabbit-transaction
+	是用于测试通过rabbitMQ实现数据的最终一致性,关键点在于的是本地消息表,message可靠服务的后台定时线程扫描
