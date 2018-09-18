@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.test.annotation.TestAopAnnotation;
 import com.test.service.TestService;
 
 /**
@@ -35,14 +36,20 @@ public class TestController
 	@Autowired
 	private TestService testService;
 	
+//	@TestAopAnnotation(test="sss")
 	@RequestMapping(value="/test")
 	public String test() throws SQLException
 	{
 		
 		testService.testLocalBizError();
 //		throw new RuntimeException("ttt");
-		
 		return "ok";
+	}
+	
+	@RequestMapping("/test/getAnnotation")
+	public void testGetAnnotation()
+	{
+		System.out.println("aa");
 	}
 	@RequestMapping(value="/test2")
 	public String test2()

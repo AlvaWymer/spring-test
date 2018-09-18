@@ -26,12 +26,12 @@ public class TestService
 	private TestDao testDao;
 	
 	
-	@Transactional
+//	@Transactional
 	public void testRemoteNormal(Integer id,String name,Integer age)
 	{
 		testDao.insert(id, name, age);
 	}
-	@Transactional
+//	@Transactional
 	public void testRemoteError(Integer id,String name,Integer age)
 	{
 		testDao.insert(id, name, age);
@@ -39,16 +39,16 @@ public class TestService
 	}
 	
 	
-	@Transactional
+//	@Transactional
 	public void testLocalBiz()
 	{
 		testDao.testDoLocal(new Random().nextInt(), "joker");
 	}
-	@Transactional
+//	@Transactional
 	public void testLocalBizError()
 	{
 		testDao.testDoLocal(new Random().nextInt(), "joker");
-		//模板本地出错
+		//模仿本地出错
 		throw new RuntimeException("local biz exception");
 	}
 

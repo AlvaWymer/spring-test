@@ -15,12 +15,14 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import com.test.annotation.TestAopAnnotation;
 import com.test.dao.TestDao;
 import com.test.service.TestService;
 
@@ -34,17 +36,22 @@ import com.test.service.TestService;
 public class TestAop
 {
 	@Pointcut(value = "execution(* com.test.controller..*.test(..))")
-	public void test1()
-	{
-	}
+	public void test1(){}
+	
+	@Pointcut(value="@annotation(com.test.annotation.TestAopAnnotation)")
+	public void test2() {}
 
 	// @Autowired
 	// private QueryRunner queryRunner;
 	@Autowired
 	private TestService testService;
 
-	@Transactional
-	@Around(value = "test1()")
+	@Before(value="test2() && @annotation(test)")
+	public void test2GetAnnotation(TestAopAnnotation test)
+	{
+		System.out.println(test.test());
+	}
+//	@Around(value = "test2()")
 	public String test(ProceedingJoinPoint joinpoint) throws SQLException
 	{
 		System.out.println("before");

@@ -39,6 +39,13 @@ public class TestSpringAopApplication
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		return dataSource;
 	}
+	@Bean(name="txManager")
+	public DataSourceTransactionManager transactionManager()
+	{
+		DataSourceTransactionManager manager=new DataSourceTransactionManager();
+		manager.setDataSource(dataSource());
+		return manager;
+	}
 
 	@Bean
 	public QueryRunner queryRunner()
