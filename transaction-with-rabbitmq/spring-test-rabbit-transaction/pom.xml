@@ -27,10 +27,19 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.test</groupId>
-			<artifactId>spring-test-rabbit-transaction-server-message</artifactId>
+			<artifactId>spring-test-rabbitmq-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+		<dependency>
+			<groupId>com.test</groupId>
+			<artifactId>spring-test-rabbitmq-transaction-spi</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

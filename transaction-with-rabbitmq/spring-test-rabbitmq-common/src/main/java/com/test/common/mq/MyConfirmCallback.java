@@ -5,14 +5,13 @@
 * @date 创建时间：2018年9月18日 下午12:49:34
 * 
 */
-package com.test.tranwithmq.mq;
+package com.test.common.mq;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate.ConfirmCallback;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import com.test.tranwithmq.model.MessageContainer;
 
 /**
 * 

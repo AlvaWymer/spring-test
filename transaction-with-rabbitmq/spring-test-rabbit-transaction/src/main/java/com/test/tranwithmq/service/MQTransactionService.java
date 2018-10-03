@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSONObject;
+import com.test.common.mq.AppEventPublisher.AppEvent;
+import com.test.message.IMessageServerFeignServiec;
 import com.test.tranwithmq.dao.MessageDao;
-import com.test.tranwithmq.spi.IMessageServerFeignServiec;
 
 /**
-* 
+* 关于通知消息服务器的步骤都可以通过异步的方式
 * @When
 * @Description
 * @Detail
@@ -33,10 +35,11 @@ public class MQTransactionService
 	private IMessageServerFeignServiec messageServerFeignServiec;
 	
 	@Transactional(rollbackFor=Exception.class)
-	public String testRabbitMqTransaction(String detail)
+	public String testRabbitMqTransaction(AppEvent event)
 	{
+		String json=JSONObject.toJSONString(event);
 		//插入本地消息表
-		Integer localMessageValidCount = messageDao.insert(detail);
+		Integer localMessageValidCount = messageDao.insert(json);
 		if(localMessageValidCount<=0)
 		{
 			return "fail";
@@ -44,7 +47,7 @@ public class MQTransactionService
 		//通知远程服务,添加消息
 		try
 		{
-			Integer remoteMessageValidCount = messageServerFeignServiec.addMessage(detail);
+			Integer remoteMessageValidCount = messageServerFeignServiec.addMessage(json);
 			if(remoteMessageValidCount<=0)
 			{
 				throw new RuntimeException("手动抛异常回滚:远程通知服务器失败,插入数据失败");
@@ -61,9 +64,8 @@ public class MQTransactionService
 		}
 		//调用其他服务的接口
 		
-		
 		//通知远程服务器更新状态
-		Integer updateStautsValidCount = messageServerFeignServiec.updateMsgStatus((long) detail.hashCode(), 1);
+		Integer updateStautsValidCount = messageServerFeignServiec.updateMsgStatus(event.getId(), 1);
 		if(updateStautsValidCount<=0)
 		{
 			throw new RuntimeException("手动抛异常回滚:远程更新消息状态失败");

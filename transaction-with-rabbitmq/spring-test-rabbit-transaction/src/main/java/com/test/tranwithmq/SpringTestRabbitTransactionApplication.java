@@ -13,7 +13,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages="com.test.tranwithmq")
+@EnableFeignClients(basePackages="com.test.message")
 public class SpringTestRabbitTransactionApplication
 {
 	@Bean

@@ -28,8 +28,8 @@ public class UserService
 	
 	public Integer insert(String name)
 	{
-//		return userDao.insert(name);
-		throw new RuntimeException("手动抛出异常尝试本地业务失败");
+		return userDao.insert(name);
+//		throw new RuntimeException("手动抛出异常尝试本地业务失败");
 	}
 
 }

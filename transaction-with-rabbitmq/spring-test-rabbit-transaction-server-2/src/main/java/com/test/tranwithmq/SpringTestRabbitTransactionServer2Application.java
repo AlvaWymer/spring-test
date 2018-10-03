@@ -46,7 +46,6 @@ public class SpringTestRabbitTransactionServer2Application
 	public ConnectionFactory connectionFactory()
 	{
 		CachingConnectionFactory cachingConnectionFactory=new CachingConnectionFactory();
-		
 		cachingConnectionFactory.setHost("localhost");
 		cachingConnectionFactory.setUsername("guest");
 		cachingConnectionFactory.setPassword("123456");		
@@ -56,6 +55,7 @@ public class SpringTestRabbitTransactionServer2Application
 	public RabbitTemplate rabbitTemplate()
 	{
 		RabbitTemplate rabbitTemplate=new RabbitTemplate();
+		rabbitTemplate.setConnectionFactory(connectionFactory());
 		return rabbitTemplate;
 	}
 

@@ -5,12 +5,13 @@
 * @date 创建时间：2018年9月18日 上午9:56:29
 * 
 */
-package com.test.tranwithmq.model;
+package com.test.common.mq;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import com.test.tranwithmq.mq.AppEventPublisher.AppEvent;
+import com.test.common.mq.AppEventPublisher.AppEvent;
+
 
 /**
  * 

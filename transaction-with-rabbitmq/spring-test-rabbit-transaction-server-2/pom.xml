@@ -31,7 +31,7 @@
 		<!-- message -->
 		<dependency>
 			<groupId>com.test</groupId>
-			<artifactId>spring-test-rabbit-transaction-server-message</artifactId>
+			<artifactId>spring-test-rabbitmq-transaction-spi</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

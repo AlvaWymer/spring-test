@@ -12,9 +12,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import com.test.tranwithmq.model.MessageContainer;
-import com.test.tranwithmq.mq.AppEventPublisher;
-import com.test.tranwithmq.mq.MyConfirmCallback;
+
+import com.test.common.mq.AppEventPublisher;
+import com.test.common.mq.MessageContainer;
+import com.test.common.mq.MyConfirmCallback;
 
 @SpringBootApplication
 @EnableDiscoveryClient

@@ -5,7 +5,7 @@
 * @date 创建时间：2018年9月18日 上午9:57:04
 * 
 */
-package com.test.tranwithmq.model;
+package com.test.common.mq;
 
 import java.io.Serializable;
 

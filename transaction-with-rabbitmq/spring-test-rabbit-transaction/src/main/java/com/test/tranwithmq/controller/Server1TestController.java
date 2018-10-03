@@ -7,17 +7,17 @@
 */
 package com.test.tranwithmq.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.test.common.mq.AppEventPublisher.AppEvent;
 import com.test.tranwithmq.dao.MessageDao;
 import com.test.tranwithmq.dao.UserDao;
 import com.test.tranwithmq.model.MessageModel;
-import com.test.tranwithmq.mq.AppEventPublisher.AppEvent;
 import com.test.tranwithmq.service.MQTransactionService;
 import com.test.tranwithmq.service.UserService;
 
@@ -59,9 +59,8 @@ public class Server1TestController
 		AppEvent event=new AppEvent();
 		event.setData(messageModel);
 		event.setType("test");
-		event.setId(String.valueOf(s.hashCode()));
-		ObjectMapper mapper=new ObjectMapper();
-		String json = mapper.convertValue(event, String.class);
-		return mqTransactionService.testRabbitMqTransaction(json);
+		//这里自己设置吧,用这种方式是不安全的
+		event.setId(System.currentTimeMillis());
+		return mqTransactionService.testRabbitMqTransaction(event);
 	}
 }
